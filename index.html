@@ -93,7 +93,7 @@
                     </div>
                 </div>
 
-                <div class="tab-pane" id="nav-db" role="tabpanel" aria-labelledby="nav-db-tab">
+                <!-- <div class="tab-pane" id="nav-db" role="tabpanel" aria-labelledby="nav-db-tab">
                     <div class="mt-1 bg-lyca p-3 height-100vh">
                         <div class="container-fluid">
                             <h6 class="pt-2 text-white">DBeaver Query</h6>
@@ -104,7 +104,21 @@
                                 </div>
                         </div>
                     </div>
+                </div> -->
+
+                <div class="tab-pane" id="nav-db" role="tabpanel" aria-labelledby="nav-db-tab">
+                    <div class="mt-1 bg-lyca p-3 height-100vh">
+                        <div class="container-fluid">
+                            <h6 class="pt-2 text-white">DBeaver Query</h6>
+                            <div class="row shadow p-1 mb-1 bg-body rounded">
+                                <div id="db-data">
+                                    <!-- Data from the database will be displayed here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                
 
                 <div class="tab-pane" id="nav-aws" role="tabpanel" aria-labelledby="nav-db-aws">
                     <div class="mt-1 bg-lyca p-3 height-100vh">
@@ -125,8 +139,72 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    // Function to fetch and display data from the database
+    function fetchData() {
+        $.ajax({
+            url: 'http://localhost:8080/heading-paragraph', // Your API endpoint URL
+            type: 'GET',
+            success: function (data) {
+                // Clear existing data
+                $('#db-data').empty();
+
+                // Loop through the data and append it to the #db-data element
+                data.forEach(function (item) {
+                    $('#db-data').append(`
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">${item.heading}</h5>
+                                    <p class="card-text">${item.paragraph}</p>
+                                    <button class="btn btn-primary" onclick="editItem('${item._id}')">Edit</button>
+                                    <button class="btn btn-danger" onclick="deleteItem('${item._id}')">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    `);
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    }
+
+    // Function to edit an item
+    function editItem(id) {
+        // Implement your edit functionality here
+        console.log('Editing item with ID:', id);
+    }
+
+    // Function to delete an item
+    function deleteItem(id) {
+        if (confirm('Are you sure you want to delete this item?')) {
+            $.ajax({
+                url: 'http://localhost:8080/heading-paragraph/' + id,
+                type: 'DELETE',
+                success: function (data) {
+                    console.log(data.message);
+                    // Fetch and display updated data after deletion
+                    fetchData();
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+    }
+
+    // Fetch data when the page loads
+    $(document).ready(function () {
+        fetchData();
+    });
+</script>
+
 </body>
 
 </html>
 
 <!-- style="'+ color:+data[i].color'" -->
+
