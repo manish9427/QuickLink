@@ -104,7 +104,7 @@
                                     <input type="text" class="form-control" id="headingInput" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="paragraphInput" class="form-label text-white">Paragraph</label>
+                                    <label for="paragraphInput" class="form-label text-white">Query</label>
                                     <textarea class="form-control" id="paragraphInput" rows="3" required></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Add</button>
@@ -145,7 +145,7 @@
     // Function to fetch and display data from the database
     function fetchData() {
         $.ajax({
-            url: 'http://localhost:8080/heading-paragraph',
+            url: 'https://backend-quicklink.onrender.com/heading-paragraph',
             type: 'GET',
             success: function (data) {
                 $('#db-data').empty();
@@ -176,7 +176,7 @@
         var heading = $('#headingInput').val();
         var paragraph = $('#paragraphInput').val();
         $.ajax({
-            url: 'http://localhost:8080/heading-paragraph',
+            url: 'https://backend-quicklink.onrender.com/heading-paragraph',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({ heading: heading, paragraph: paragraph }),
@@ -233,7 +233,7 @@ function editItem(id, heading, paragraph) {
         var newHeading = $('#editHeading').val();
         var newParagraph = $('#editParagraph').val();
         $.ajax({
-            url: 'http://localhost:8080/heading-paragraph/' + id,
+            url: 'https://backend-quicklink.onrender.com/heading-paragraph/' + id,
             type: 'PUT',
             contentType: 'application/json',
             data: JSON.stringify({ heading: newHeading, paragraph: newParagraph }),
@@ -252,7 +252,7 @@ function editItem(id, heading, paragraph) {
     function deleteItem(id) {
         if (confirm('Are you sure you want to delete this item?')) {
             $.ajax({
-                url: 'http://localhost:8080/heading-paragraph/' + id,
+                url: 'https://backend-quicklink.onrender.com/heading-paragraph/' + id,
                 type: 'DELETE',
                 success: function (data) {
                     console.log(data.message);
