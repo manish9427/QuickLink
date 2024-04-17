@@ -100,6 +100,14 @@
                             <!-- Form for adding new heading-paragraph pair -->
                             <form id="addForm">
                                 <div class="mb-3">
+                                    <label for="usernameInput" class="form-label text-white">Username</label>
+                                    <input type="text" class="form-control" id="usernameInput" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="passwordInput" class="form-label text-white">Password</label>
+                                    <input type="password" class="form-control" id="passwordInput" required>
+                                </div>
+                                <div class="mb-3">
                                     <label for="headingInput" class="form-label text-white">Heading</label>
                                     <input type="text" class="form-control" id="headingInput" required>
                                 </div>
@@ -117,6 +125,10 @@
                         </div>
                     </div>
                 </div>
+                
+                
+                
+                
 
 
                 
@@ -141,135 +153,126 @@
     <script src="index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-<script>
-    // Function to fetch and display data from the database
-    function fetchData() {
-        $.ajax({
-            url: 'https://backend-quicklink.onrender.com/heading-paragraph',
-            type: 'GET',
-            success: function (data) {
-                $('#db-data').empty();
-                data.forEach(function (item) {
-                    $('#db-data').append(`
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">${item.heading}</h5>
-                                    <pre class="card-text">${item.paragraph}</pre>
-                                    <button class="btn btn-primary" onclick="editItem('${item._id}', '${item.heading}', '${item.paragraph}')">Edit</button>
-                                    <button class="btn btn-danger" onclick="deleteItem('${item._id}')">Delete</button>
+    <script>
+        // Function to authenticate user
+        function authenticate(username, password) {
+            // Replace this with your actual authentication mechanism
+            return username === "manish.verma" && password === "manish786";
+        }
+    
+        // Function to fetch and display data from the database
+        function fetchData(username, password) {
+            // Display loading message
+            $('#db-data').html('<p>Loading...</p>');
+            
+            // Authenticate user
+            if (!authenticate(username, password)) {
+                $('#db-data').html('<p>Authentication failed. Please check your username and password.</p>');
+                return;
+            }
+            
+            $.ajax({
+                url: 'https://backend-quicklink.onrender.com/heading-paragraph',
+                type: 'GET',
+                success: function (data) {
+                    $('#db-data').empty();
+                    data.forEach(function (item) {
+                        $('#db-data').append(`
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${item.heading}</h5>
+                                        <pre class="card-text">${item.paragraph}</pre>
+                                        <button class="btn btn-danger" onclick="deleteItem('${item._id}', '${username}', '${password}')">Delete</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    `);
-                });
-            },
-            error: function (xhr, status, error) {
-                console.error(xhr.responseText);
+                        `);
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText);
+                    // Display error message if fetching data fails
+                    $('#db-data').html('<p>Error loading data. Please try again later.</p>');
+                }
+            });
+        }
+    
+        // Function to add a new heading-paragraph pair
+        $('#addForm').submit(function (e) {
+            e.preventDefault(); // Prevent the default form submission
+            
+            var username = $('#usernameInput').val();
+            var password = $('#passwordInput').val();
+            
+            // Authenticate user
+            if (!authenticate(username, password)) {
+                alert('Authentication failed. Please check your username and password.');
+                return;
             }
-        });
-    }
-
-    // Function to add a new heading-paragraph pair
-    $('#addForm').submit(function (e) {
-        e.preventDefault(); // Prevent the default form submission
-        var heading = $('#headingInput').val();
-        var paragraph = $('#paragraphInput').val();
-        $.ajax({
-            url: 'https://backend-quicklink.onrender.com/heading-paragraph',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({ heading: heading, paragraph: paragraph }),
-            success: function (data) {
-                console.log('Added:', data);
-                fetchData(); // Refresh the displayed data after adding
-                $('#headingInput').val(''); // Clear input fields
-                $('#paragraphInput').val('');
-            },
-            error: function (xhr, status, error) {
-                console.error(xhr.responseText);
-            }
-        });
-    });
-
-// Function to edit an item
-function editItem(id, heading, paragraph) {
-        // Create a Bootstrap modal for editing
-        var modal = $('<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> \
-            <div class="modal-dialog"> \
-                <div class="modal-content"> \
-                    <div class="modal-header"> \
-                        <h5 class="modal-title" id="exampleModalLabel">Edit Item</h5> \
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> \
-                    </div> \
-                    <div class="modal-body"> \
-                        <div class="mb-3"> \
-                            <label for="editHeading" class="form-label">Heading</label> \
-                            <input type="text" class="form-control" id="editHeading" value="' + heading + '"> \
-                        </div> \
-                        <div class="mb-3"> \
-                            <label for="editParagraph" class="form-label">Paragraph</label> \
-                            <textarea class="form-control" id="editParagraph" rows="5">' + paragraph + '</textarea> \
-                        </div> \
-                    </div> \
-                    <div class="modal-footer"> \
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> \
-                        <button type="button" class="btn btn-primary" onclick="saveChanges(\'' + id + '\')">Save changes</button> \
-                    </div> \
-                </div> \
-            </div> \
-        </div>');
-
-        // Append the modal to the body
-        modal.appendTo('body');
-
-        // Show the modal
-        var bootstrapModal = new bootstrap.Modal(modal[0]);
-        bootstrapModal.show();
-    }
-
-    // Function to save changes after editing
-    function saveChanges(id) {
-        var newHeading = $('#editHeading').val();
-        var newParagraph = $('#editParagraph').val();
-        $.ajax({
-            url: 'https://backend-quicklink.onrender.com/heading-paragraph/' + id,
-            type: 'PUT',
-            contentType: 'application/json',
-            data: JSON.stringify({ heading: newHeading, paragraph: newParagraph }),
-            success: function (data) {
-                console.log('Edited:', data);
-                $('#editModal').modal('hide'); // Hide the modal after saving changes
-                fetchData(); // Refresh the displayed data after editing
-            },
-            error: function (xhr, status, error) {
-                console.error(xhr.responseText);
-            }
-        });
-    }
-
-    // Function to delete an item
-    function deleteItem(id) {
-        if (confirm('Are you sure you want to delete this item?')) {
+            
+            var heading = $('#headingInput').val();
+            var paragraph = $('#paragraphInput').val();
             $.ajax({
-                url: 'https://backend-quicklink.onrender.com/heading-paragraph/' + id,
-                type: 'DELETE',
+                url: 'https://backend-quicklink.onrender.com/heading-paragraph',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ heading: heading, paragraph: paragraph }),
                 success: function (data) {
-                    console.log(data.message);
-                    fetchData(); // Refresh the displayed data after deletion
+                    console.log('Added:', data);
+                    fetchData(username, password); // Refresh the displayed data after adding
+                    $('#headingInput').val(''); // Clear input fields
+                    $('#paragraphInput').val('');
                 },
                 error: function (xhr, status, error) {
                     console.error(xhr.responseText);
                 }
             });
-        }
+        });
+    
+        // Function to delete an item
+function deleteItem(id) {
+    var username = $('#usernameInput').val();
+    var password = $('#passwordInput').val();
+    
+    // Authenticate user
+    if (!authenticate(username, password)) {
+        alert('Authentication failed. Please check your username and password.');
+        return;
     }
+    
+    if (confirm('Are you sure you want to delete this item?')) {
+        $.ajax({
+            url: 'https://backend-quicklink.onrender.com/heading-paragraph/' + id,
+            type: 'DELETE',
+            success: function (data) {
+                console.log(data.message);
+                fetchData(username, password); // Refresh the displayed data after deletion
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    }
+}
 
-    // Fetch data when the page loads
-    $(document).ready(function () {
-        fetchData();
-    });
-</script>
+        // Fetch data when the page loads
+        $(document).ready(function () {
+            // Fetch data only if username and password are provided
+            var username = "manish.verma"; // Replace with your username
+            var password = "manish786"; // Replace with your password
+            if (username && password) {
+                fetchData(username, password);
+            } else {
+                $('#db-data').html('<p>Username and password are required to fetch data.</p>');
+            }
+        });
+    </script>
+    
+    
+    
+    
+    
 
 </body>
 

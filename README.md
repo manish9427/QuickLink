@@ -1,1 +1,278 @@
-# QuickLink
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LycaDigital Quick links</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="index.css">
+        <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAPFBMVEVHcEwFuZ4H3HwH3nkH3noH3HwH3HwH3HwH3HwAat8AUe0H3HwAZOIAat8ATO8Aat8Aat8H3HwH4HcAat/3lVCNAAAAFHRSTlMAMaLUuXb/Z0O1YIhz/1NHbx3ilw7i5uEAAACISURBVHgBrc9FAgMxDATBMfPi/98aBoOSxTq3LQlnYlwIqfCT1E8GNP3BQRH6g/zD6hxaXOcsOSGjUHG+DAJKMXV50G6Z6kCZoLI9+jqo/xnyIMeXAq2WAr0YmKVALgXi8A9hKRgXAr5wpsD/QCIL5FQRnCELnK9EZIbUmpGJqeGRY3Eo9TjVFZ9gEndWhAz/AAAAAElFTkSuQmCC">
+</head>
+
+<body>
+    <div class="">
+        <div class="bg-lyca">
+            <div class="container-fluid">
+                <div class="row ">
+                    <div class="col-6">
+                        <p class="mt-1">
+                            <a href="https://www.lycadigital.com/" target="_blank" class="btn w-10 text-start" tabindex="-1" role="button" aria-disabled="true">
+                                <img style="height:60px; width: 100px;" src="data:image/png;base64,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" alt="Logo" class="logo">
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div>
+            <nav>
+                <div class="nav nav-tabs border-0 mt-1 ms-3" id="nav-tab" role="tablist">
+                  <button class="nav-link active btn-custom-padding" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Quick Link's</button>
+                  <button class="nav-link btn-custom-padding" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Cloudwatch</button>
+                  <button class="nav-link btn-custom-padding" id="nav-stage-tab" data-bs-toggle="tab" data-bs-target="#nav-stage" type="button" role="tab" aria-controls="nav-stage" aria-selected="false">Stage</button>
+                  <button class="nav-link btn-custom-padding" id="nav-db-tab" data-bs-toggle="tab" data-bs-target="#nav-db" type="button" role="tab" aria-controls="nav-db" aria-selected="false">DBeaver</button>
+                  <button class="nav-link btn-custom-padding" id="nav-aws-tab" data-bs-toggle="tab" data-bs-target="#nav-aws" type="button" role="tab" aria-controls="nav-aws" aria-selected="false">AWS</button>
+                </div>
+              </nav>
+              <div class="tab-content" id="nav-tabContent">
+
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <div class="mt-1 bg-lyca p-3 height-100vh">
+                        <div class="container-fluid">
+                            <!-- prod Env url's section start -->
+                            <h6 class="pt-2 text-white">Prod Env Web URL's</h6>
+                            <div class="row shadow p-1 mb-1 bg-body rounded" id="prodUrlData"></div>
+                            <!-- prod Env url's section end -->
+
+                            <!-- Stage Env url's section start -->
+                            <!-- <h6 class="pt-2 text-white">Stage Env Web URL's</h6>
+                            <div class="row shadow p-1 mb-1 bg-body rounded" id="stageUrlData"></div> -->
+                            <!-- Stage Env url's section end -->
+
+                            <!-- iOS AppStore Url's start -->
+                            <h6 class="pt-2 text-white">iOS App Store URL's</h6>
+                            <div class="row shadow p-1 mb-1 bg-body rounded" id="iOSUrlData"></div>
+                            <!-- iOS AppStore Url's start -->
+
+                            <!-- iOS AppStore Url's start -->
+                            <h6 class="pt-2 text-white">Android Play Store URL's</h6>
+                            <div class="row shadow p-1 mb-1 bg-body rounded" id="androidUrlData"></div>
+                            <!-- iOS AppStore Url's start -->
+
+                            <!-- Other url's section start -->
+                            <h6 class="text-white">Other Quick Links</h6>
+                            <div class="row shadow p-1 mb-1 bg-body rounded" id="otherUrlData"></div>
+                            <!-- Other url's section end -->
+
+
+                            <!-- Internal Links section end -->
+                            <h6 class="text-white">Internal Links</h6>
+                            <div class="row shadow p-1 mb-1 bg-body rounded" id="internalUrlData"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="tab-pane" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    <div class="mt-1 bg-lyca p-3 height-100vh">
+                        <div class="container-fluid">
+                            <h6 class="text-white">Monitoring Cloudwatch Links</h6>
+                            <div class="row shadow p-1 mb-1 bg-body rounded" id="CloudwatchUrlData"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="nav-stage" role="tabpanel" aria-labelledby="nav-stage-tab">
+                    <div class="mt-1 bg-lyca p-3 height-100vh">
+                        <div class="container-fluid">
+                            <h6 class="pt-2 text-white">Stage Env Web URL's</h6>
+                                <div class="row shadow p-1 mb-1 bg-body rounded" id="stageUrlData"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="nav-db" role="tabpanel" aria-labelledby="nav-db-tab">
+                    <div class="mt-1 bg-lyca p-3 height-100vh">
+                        <div class="container-fluid">
+                            <h6 class="pt-2 text-white">DBeaver Query</h6>
+                            <!-- Form for adding new heading-paragraph pair -->
+                            <form id="addForm">
+                                <div class="mb-3">
+                                    <label for="headingInput" class="form-label text-white">Heading</label>
+                                    <input type="text" class="form-control" id="headingInput" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="paragraphInput" class="form-label text-white">Query</label>
+                                    <textarea class="form-control" id="paragraphInput" rows="3" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Add</button>
+                            </form>
+
+                            <!-- Display area for existing heading-paragraph pairs -->
+                            <div id="db-data" class="row shadow p-1 mb-1 bg-body rounded">
+                                <!-- Data from the database will be displayed here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="tab-pane" id="nav-aws" role="tabpanel" aria-labelledby="nav-db-aws">
+                    <div class="mt-1 bg-lyca p-3 height-100vh">
+                        <div class="container-fluid">
+                            <h6 class="pt-2 text-white">AWS Query</h6>
+                                <div class="row shadow p-1 mb-1 bg-body rounded" >
+                                    <p>
+                                        AWS
+                                    </p>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<script>
+    // Function to fetch and display data from the database
+    function fetchData() {
+        $.ajax({
+            url: 'https://backend-quicklink.onrender.com/heading-paragraph',
+            type: 'GET',
+            success: function (data) {
+                $('#db-data').empty();
+                data.forEach(function (item) {
+                    $('#db-data').append(`
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">${item.heading}</h5>
+                                    <pre class="card-text">${item.paragraph}</pre>
+
+                                    <button class="btn btn-primary" onclick="editItem('${item._id}', '${item.heading}', '${item.paragraph}')">Edit</button>
+                                    <button class="btn btn-danger" onclick="deleteItem('${item._id}')">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    `);
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    }
+
+    // Function to add a new heading-paragraph pair
+    $('#addForm').submit(function (e) {
+        e.preventDefault(); // Prevent the default form submission
+        var heading = $('#headingInput').val();
+        var paragraph = $('#paragraphInput').val();
+        $.ajax({
+            url: 'https://backend-quicklink.onrender.com/heading-paragraph',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ heading: heading, paragraph: paragraph }),
+            success: function (data) {
+                console.log('Added:', data);
+                fetchData(); // Refresh the displayed data after adding
+                $('#headingInput').val(''); // Clear input fields
+                $('#paragraphInput').val('');
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    });
+
+// Function to edit an item
+function editItem(id, heading, paragraph) {
+// Create a Bootstrap modal for editing
+var modal = $('<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> \
+ <div class="modal-dialog"> \
+ <div class="modal-content"> \
+ <div class="modal-header"> \
+ <h5 class="modal-title" id="exampleModalLabel">Edit Item</h5> \
+ <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> \
+ </div> \
+ <div class="modal-body"> \
+ <div class="mb-3"> \
+ <label for="editHeading" class="form-label">Heading</label> \
+ <input type="text" class="form-control" id="editHeading" value="' + heading + '"> \
+ </div> \
+ <div class="mb-3"> \
+ <label for="editParagraph" class="form-label">Paragraph</label> \
+ <textarea class="form-control" id="editParagraph" rows="5">' + paragraph + '</textarea> \
+ </div> \
+ </div> \
+ <div class="modal-footer"> \
+ <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> \
+ <button type="button" class="btn btn-primary" onclick="saveChanges(\'' + id + '\')">Save changes</button> \
+ </div> \
+ </div> \
+ </div> \
+ </div>');
+
+        // Append the modal to the body
+        modal.appendTo('body');
+
+        // Show the modal
+        var bootstrapModal = new bootstrap.Modal(modal[0]);
+        bootstrapModal.show();
+    }
+
+    // Function to save changes after editing
+    function saveChanges(id) {
+        var newHeading = $('#editHeading').val();
+        var newParagraph = $('#editParagraph').val();
+        $.ajax({
+            url: 'https://backend-quicklink.onrender.com/heading-paragraph/' + id,
+            type: 'PUT',
+            contentType: 'application/json',
+            data: JSON.stringify({ heading: newHeading, paragraph: newParagraph }),
+            success: function (data) {
+                console.log('Edited:', data);
+                $('#editModal').modal('hide'); // Hide the modal after saving changes
+                fetchData(); // Refresh the displayed data after editing
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    }
+
+    // Function to delete an item
+    function deleteItem(id) {
+        if (confirm('Are you sure you want to delete this item?')) {
+            $.ajax({
+                url: 'https://backend-quicklink.onrender.com/heading-paragraph/' + id,
+                type: 'DELETE',
+                success: function (data) {
+                    console.log(data.message);
+                    fetchData(); // Refresh the displayed data after deletion
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+    }
+
+    // Fetch data when the page loads
+    $(document).ready(function () {
+        fetchData();
+    });
+
+</script>
+
+</body>
+
+</html>
